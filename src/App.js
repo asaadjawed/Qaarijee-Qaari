@@ -1,13 +1,8 @@
 /* eslint-disable */
-import logo from "./logo.svg";
 import "./App.css";
-
+import Layouts from "./layouts/routes";
 function App() {
-  return (
-    <div className="App">
-      <h1>Hello</h1>
-    </div>
-  );
+  return <Layouts />;
 }
 
 export default App;
