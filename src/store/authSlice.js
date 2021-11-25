@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+/* eslint-disable */
 
 const authSlice = createSlice({
   name: "auth",
@@ -22,5 +23,5 @@ const authSlice = createSlice({
   },
 });
 
-const { login, logout } = authSlice.actions;
+export const { login, logout } = authSlice.actions;
 export default authSlice.reducer;
