@@ -73,7 +73,7 @@ const Login = () => {
   const classes = useStyles();
 
   // manage form state
-  const [adminCredentials, setAdminCredentials] = useState({
+  const [qaariCredentials, setQaariCredentials] = useState({
     email: "",
     password: "",
   });
@@ -90,7 +90,7 @@ const Login = () => {
           color="initial"
           id="login-heading"
         >
-          Admin Login
+          Qaari Login
         </Typography>
         <Box display="flex" my={2} justifyContent="center">
           <Divider className={classes.divider} />
@@ -124,13 +124,13 @@ const Login = () => {
           <FormControl fullWidth className={classes.fieldContainer}>
             <FormLabel className={classes.fieldLabel}>Email</FormLabel>
             <TextField
-              id="admin-email"
+              id="qaari-email"
               placeholder="Type your email"
               inputProps={{ className: classes.textField }}
-              value={adminCredentials.email}
+              value={qaariCredentials.email}
               onChange={(e) =>
-                setAdminCredentials({
-                  ...adminCredentials,
+                setQaariCredentials({
+                  ...qaariCredentials,
                   email: e.target.value,
                 })
               }
@@ -140,14 +140,14 @@ const Login = () => {
           <FormControl fullWidth className={classes.fieldContainer}>
             <FormLabel className={classes.fieldLabel}>Password</FormLabel>
             <TextField
-              id="admin-password"
+              id="qaari-password"
               type="password"
               placeholder="Type your password"
               inputProps={{ className: classes.textField }}
-              value={adminCredentials.password}
+              value={qaariCredentials.password}
               onChange={(e) =>
-                setAdminCredentials({
-                  ...adminCredentials,
+                setQaariCredentials({
+                  ...qaariCredentials,
                   password: e.target.value,
                 })
               }
