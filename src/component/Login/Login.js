@@ -16,6 +16,11 @@ import Divider from "@mui/material/Divider";
 import MuiAlert from "@mui/material/Alert";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import axios from "axios";
+import { Backend_url } from '../../BackEnd';
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { login } from "../../store/authSlice";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -71,6 +76,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   // manage form state
   const [qaariCredentials, setQaariCredentials] = useState({
@@ -81,6 +87,20 @@ const Login = () => {
     message: "Testing",
     isError: true,
   });
+
+  const admin = {
+    email: qaariCredentials.email,
+    password: qaariCredentials.password
+  }
+
+  const handleLogin = async () => {
+    const {data} = await axios.post(`${Backend_url}/auth/login/admin`,
+    {email: admin.email ,password: admin.password})
+
+    dispatch(login(data));
+    console.log('adminData', data)
+  }
+
   return (
     <Container maxWidth="sm" className={classes.root}>
       <div className={classes.loginContainer}>
@@ -90,13 +110,13 @@ const Login = () => {
           color="initial"
           id="login-heading"
         >
-          Qaari Login
+          Admin Login
         </Typography>
         <Box display="flex" my={2} justifyContent="center">
           <Divider className={classes.divider} />
         </Box>
         <form className={classes.form}>
-          {error.isError && (
+          {/* {error.isError && (
             <MuiAlert icon={false} severity="error">
               <Box
                 display="flex"
@@ -120,7 +140,7 @@ const Login = () => {
                 </IconButton>
               </Box>
             </MuiAlert>
-          )}
+          )} */}
           <FormControl fullWidth className={classes.fieldContainer}>
             <FormLabel className={classes.fieldLabel}>Email</FormLabel>
             <TextField
@@ -159,8 +179,9 @@ const Login = () => {
             <Button
               variant="outlined"
               className={classes.submitBtn}
-              type="submit"
+              type="button"
               size="large"
+              onClick={handleLogin}
             >
               Login
             </Button>
